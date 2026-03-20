@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            box-shadow: 3px 3px 3px black;
+        }
+        img {
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Jugadores del Real Madrid</h1>
+    <div id="contenedor">
+
+    </div>
+    <script>
+        let jugadores = [
+            {
+                nombre:"Mbappe",
+                edad: 28,
+                ficha: 200000000,
+                foto: "mbappe.jpeg",
+                
+            },
+            {
+                nombre:"Valverde",
+                edad: 26,
+                ficha: 189072513,
+                foto: "valverde.jpeg",
+            },
+            {
+                nombre:"Carvajal",
+                edad: 34,
+                ficha: 202351035,
+                foto: "carvajal.jpeg",
+            },    
+            {
+                nombre:"Vinicus",
+                edad: 27,
+                ficha: 192351035,
+                foto: "vinicius.jpeg",
+            },         
+        ]
+
+        for ( let i=0;i<jugadores.length;i++){
+           // jugador = jugadores[i];
+            nombreJugador = jugadores[i].nombre;
+            edadJugador = jugadores[i].edad;
+            fichaJugador = jugadores[i].ficha;
+            fotoJugador = jugadores[i].foto
+            nuevaCaja = document.createElement("div");
+            nuevoH1 = document.createElement("h1");
+            nuevoH1.innerHTML = nombreJugador;
+            nuevaCaja.appendChild(nuevoH1);
+            nuevoH2 = document.createElement("h2");
+            nuevoH2.innerHTML = "Edad: "+edadJugador;
+            nuevaCaja.appendChild(nuevoH2);
+            nuevoP = document.createElement("h3");
+            nuevoP.innerHTML = "Cobra "+fichaJugador;
+            nuevaCaja.appendChild(nuevoP);
+            nuevaImg = document.createElement("img");
+            nuevaImg.src = fotoJugador;
+            nuevaCaja.appendChild(nuevaImg);
+
+
+            document.getElementById("contenedor").appendChild(nuevaCaja);
+
+            
+        }
+    </script>
+</body>
+</html>
