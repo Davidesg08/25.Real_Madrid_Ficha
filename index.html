@@ -5,73 +5,118 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        div {
-            box-shadow: 3px 3px 3px black;
+        div { box-shadow: 3px 3px 3px black; }
+        img { width: 200px; }
+        #contenedor {
+            background-color: beige;
+            padding: 20px;
+            display: flex;
+            justify-content: space-around;
         }
-        img {
-            width: 200px;
+        #contenedor div {
+            background-color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        table, td, th {
+            border: 2px solid black;
+            border-collapse: collapse;
+            padding: 8px; /* Un poco de espacio para que se vea mejor */
         }
     </style>
 </head>
 <body>
     <h1>Jugadores del Real Madrid</h1>
-    <div id="contenedor">
+    <audio src="himno-real-madrid.mp3"></audio>
+    
+    <div id="contenedor"></div>
 
-    </div>
+    <table id="tabla-jugadores">
+        </table>
+
     <script>
         let jugadores = [
-            {
-                nombre:"Mbappe",
-                edad: 28,
-                ficha: 200000000,
-                foto: "mbappe.jpeg",
-                
-            },
-            {
-                nombre:"Valverde",
-                edad: 26,
-                ficha: 189072513,
-                foto: "valverde.jpeg",
-            },
-            {
-                nombre:"Carvajal",
-                edad: 34,
-                ficha: 202351035,
-                foto: "carvajal.jpeg",
-            },    
-            {
-                nombre:"Vinicus",
-                edad: 27,
-                ficha: 192351035,
-                foto: "vinicius.jpeg",
-            },         
-        ]
+            { nombre: "Mbappe", edad: 28, ficha: 200000000, foto: "mbappe.jpeg" },
+            { nombre: "Valverde", edad: 26, ficha: 189072513, foto: "valverde.jpeg" },
+            { nombre: "Carvajal", edad: 34, ficha: 202351035, foto: "carvajal.jpeg" },    
+            { nombre: "Vinicius", edad: 27, ficha: 192351035, foto: "vinicius.jpeg" },         
+        ];
 
-        for ( let i=0;i<jugadores.length;i++){
-           // jugador = jugadores[i];
-            nombreJugador = jugadores[i].nombre;
-            edadJugador = jugadores[i].edad;
-            fichaJugador = jugadores[i].ficha;
-            fotoJugador = jugadores[i].foto
-            nuevaCaja = document.createElement("div");
-            nuevoH1 = document.createElement("h1");
+        let tabla = document.getElementById("tabla-jugadores");
+        let nuevoTRCabecera = document.createElement("tr");
+
+        let cabeceraNombre = document.createElement("th");
+        cabeceraNombre.innerHTML = "Nombre";
+        
+        let cabeceraEdad = document.createElement("th"); 
+        cabeceraEdad.innerHTML = "Edad";
+
+        let cabeceraFicha = document.createElement("th");
+        cabeceraFicha.innerHTML = "Ficha";
+
+        nuevoTRCabecera.appendChild(cabeceraNombre);
+        nuevoTRCabecera.appendChild(cabeceraEdad);
+        nuevoTRCabecera.appendChild(cabeceraFicha);
+        
+        tabla.appendChild(nuevoTRCabecera);
+
+
+        for (let i = 0; i < jugadores.length; i++) {
+            let nombreJugador = jugadores[i].nombre;
+            let edadJugador = jugadores[i].edad;
+            let fichaJugador = jugadores[i].ficha;
+            let fotoJugador = jugadores[i].foto;
+
+            let nuevaCaja = document.createElement("div");
+            
+            let nuevoH1 = document.createElement("h1");
             nuevoH1.innerHTML = nombreJugador;
             nuevaCaja.appendChild(nuevoH1);
-            nuevoH2 = document.createElement("h2");
-            nuevoH2.innerHTML = "Edad: "+edadJugador;
+
+            let nuevoH2 = document.createElement("h2");
+            nuevoH2.innerHTML = "Edad: " + edadJugador;
             nuevaCaja.appendChild(nuevoH2);
-            nuevoP = document.createElement("h3");
-            nuevoP.innerHTML = "Cobra "+fichaJugador;
+
+            let nuevoP = document.createElement("h3");
+            nuevoP.innerHTML = "Cobra: " + fichaJugador;
             nuevaCaja.appendChild(nuevoP);
-            nuevaImg = document.createElement("img");
+
+            let nuevaImg = document.createElement("img");
             nuevaImg.src = fotoJugador;
             nuevaCaja.appendChild(nuevaImg);
 
-
             document.getElementById("contenedor").appendChild(nuevaCaja);
-
-            
         }
+
+        for (let jugador of jugadores) {
+    let nuevoTR = document.createElement("tr");
+
+    // Celda Nombre
+    let tdNombre = document.createElement("td");
+    tdNombre.innerHTML = jugador.nombre;
+    nuevoTR.appendChild(tdNombre);
+
+    // Celda Edad
+    let tdEdad = document.createElement("td");
+    tdEdad.innerHTML = jugador.edad;
+    nuevoTR.appendChild(tdEdad);
+
+    // Celda Ficha
+    let tdFicha = document.createElement("td");
+    tdFicha.innerHTML = jugador.ficha;
+    nuevoTR.appendChild(tdFicha);
+    
+    // Celda Foto (Corregido)
+    let tdFoto = document.createElement("td"); 
+    let nuevaImg = document.createElement("img"); 
+    nuevaImg.src = jugador.foto;
+
+    
+    tdFoto.appendChild(nuevaImg); 
+    nuevoTR.appendChild(tdFoto); 
+
+    tabla.appendChild(nuevoTR); 
+}
     </script>
 </body>
 </html>
